@@ -1,0 +1,196 @@
+.progress-page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.progress-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+}
+
+.progress-header {
+  margin-bottom: var(--space-lg);
+}
+
+.progress-header h1 {
+  margin-bottom: var(--space-xs);
+}
+
+.progress-header p {
+  color: var(--ink-secondary);
+  margin: 0;
+}
+
+/* Stats Row */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: var(--space-md);
+  text-align: center;
+  box-shadow: 0 2px 12px var(--shadow);
+}
+
+.stat-icon {
+  color: var(--accent-gold);
+  margin-bottom: var(--space-xs);
+}
+
+.stat-value {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--ink-primary);
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+}
+
+/* Section */
+.section {
+  margin-bottom: var(--space-xl);
+}
+
+.section h2 {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.section h2 svg {
+  color: var(--accent-gold);
+}
+
+.section-desc {
+  color: var(--ink-secondary);
+  margin-bottom: var(--space-md);
+}
+
+/* Dependency Graph */
+.dependency-graph {
+  padding: var(--space-md);
+  overflow-x: auto;
+}
+
+.dep-svg {
+  width: 100%;
+  max-width: 650px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Chapter Progress */
+.chapter-progress-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.chapter-progress-item {
+  padding: var(--space-md);
+}
+
+.cp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-sm);
+}
+
+.cp-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--ink-primary);
+}
+
+.cp-percent {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+}
+
+.cp-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--space-sm);
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+}
+
+/* Gap Analysis */
+.gap-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.gap-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+}
+
+.gap-priority {
+  flex-shrink: 0;
+}
+
+.priority-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: var(--accent-coral);
+  color: white;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 50%;
+}
+
+.gap-content {
+  flex: 1;
+}
+
+.gap-kp-id {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent-gold);
+}
+
+.gap-content h4 {
+  margin: 2px 0;
+  font-size: 1rem;
+}
+
+.gap-outline {
+  color: var(--ink-muted);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.gap-actions {
+  flex-shrink: 0;
+}
+
+@media (max-width: 1024px) {
+  .stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
