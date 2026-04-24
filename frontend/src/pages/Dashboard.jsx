@@ -36,7 +36,7 @@ export default function Dashboard() {
     : 0;
 
   const formatDate = (date) => {
-    if (!date) return 'Unknown';
+    if (!date) return '未知';
     const d = new Date(date);
     return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
   };
@@ -75,29 +75,29 @@ export default function Dashboard() {
         <div className="stat-card">
           <BookOpen className="stat-icon" size={24} />
           <div className="stat-value">{outlines.length}</div>
-          <div className="stat-label">Total Outlines</div>
+          <div className="stat-label">课程大纲总数</div>
         </div>
         <div className="stat-card">
           <Target className="stat-icon" size={24} />
           <div className="stat-value">{totalKPs}</div>
-          <div className="stat-label">Knowledge Points</div>
+          <div className="stat-label">知识点</div>
         </div>
         <div className="stat-card">
           <FileText className="stat-icon" size={24} />
           <div className="stat-value">0</div>
-          <div className="stat-label">Lessons Generated</div>
+          <div className="stat-label">已生成备课</div>
         </div>
         <div className="stat-card">
           <TrendingUp className="stat-icon" size={24} />
           <div className="stat-value">{progressPercent}%</div>
-          <div className="stat-label">Progress</div>
+          <div className="stat-label">学习进度</div>
         </div>
       </section>
 
       {/* Recent Outlines */}
       <section className="section animate-in animate-delay-2">
         <div className="section-header">
-          <h2>Recent Outlines</h2>
+          <h2>最近的大纲</h2>
           <Link to="/new" className="btn btn-secondary btn-sm">
             <PlusCircle size={16} />
             New
@@ -107,11 +107,11 @@ export default function Dashboard() {
         {outlines.length === 0 ? (
           <div className="empty-state card">
             <BookOpen size={48} />
-            <h3>No outlines yet</h3>
-            <p>Create your first outline to get started with Socratic learning.</p>
+            <h3>还没有大纲</h3>
+            <p>创建你的第一个大纲，开始苏格拉底式学习之旅。</p>
             <Link to="/new" className="btn btn-primary">
               <PlusCircle size={18} />
-              Create Outline
+              创建大纲
             </Link>
           </div>
         ) : (
@@ -131,7 +131,7 @@ export default function Dashboard() {
                 <div className="outline-meta">
                   <span className="meta-item">
                     <BookOpen size={14} />
-                    {outline.chapterCount || 2} Chapters
+                    {outline.chapterCount || 2} 章节
                   </span>
                   <span className="meta-item">
                     <Clock size={14} />
@@ -151,7 +151,7 @@ export default function Dashboard() {
                 )}
                 <div className="outline-card-footer">
                   <span className="continue-link">
-                    Continue <ChevronRight size={16} />
+                    继续学习 <ChevronRight size={16} />
                   </span>
                 </div>
               </Link>
@@ -162,17 +162,17 @@ export default function Dashboard() {
 
       {/* Quick Actions */}
       <section className="section animate-in animate-delay-3">
-        <h2>Quick Actions</h2>
+        <h2>快捷操作</h2>
         <div className="quick-actions">
           <Link to="/progress" className="quick-action card">
             <TrendingUp size={32} className="qa-icon" />
-            <h3>View Progress</h3>
-            <p>Track your learning journey</p>
+            <h3>查看进度</h3>
+            <p>追踪你的学习历程</p>
           </Link>
           <Link to="/new" className="quick-action card">
             <Sparkles size={32} className="qa-icon" />
-            <h3>Generate Quiz</h3>
-            <p>Test your knowledge</p>
+            <h3>生成测验</h3>
+            <p>检验你的知识掌握</p>
           </Link>
           <button
             className="quick-action card"
@@ -182,8 +182,8 @@ export default function Dashboard() {
             }}
           >
             <Target size={32} className="qa-icon" />
-            <h3>Check Quality</h3>
-            <p>Analyze your outline</p>
+            <h3>质量检查</h3>
+            <p>分析你的大纲质量</p>
           </button>
         </div>
       </section>

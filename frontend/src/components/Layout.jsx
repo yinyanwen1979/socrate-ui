@@ -4,9 +4,9 @@ import { BookOpen, Home, PlusCircle, BarChart2, CheckCircle, Menu, X } from 'luc
 import './Layout.css';
 
 const navItems = [
-  { path: '/', label: 'Dashboard', icon: Home },
-  { path: '/new', label: 'New Outline', icon: PlusCircle },
-  { path: '/progress', label: 'Progress', icon: BarChart2 },
+  { path: '/', label: '学习台', icon: Home },
+  { path: '/new', label: '新建大纲', icon: PlusCircle },
+  { path: '/progress', label: '学习进度', icon: BarChart2 },
 ];
 
 export default function Layout({ children }) {
@@ -20,7 +20,7 @@ export default function Layout({ children }) {
         <div className="sidebar-header">
           <Link to="/" className="logo">
             <span className="logo-icon">Σ</span>
-            <span className="logo-text">Socrate</span>
+            <span className="logo-text">苏格拉底</span>
           </Link>
           <button
             className="sidebar-toggle"
@@ -50,7 +50,7 @@ export default function Layout({ children }) {
 
         {sidebarOpen && (
           <div className="sidebar-footer">
-            <div className="tagline">Wisdom Through Questions</div>
+            <div className="tagline">智慧源于追问</div>
           </div>
         )}
       </aside>
