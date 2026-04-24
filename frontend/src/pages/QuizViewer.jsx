@@ -131,9 +131,9 @@ export default function QuizViewer() {
   if (!quiz) {
     return (
       <div className="quiz-not-found">
-        <h2>Quiz not found</h2>
-        <p>The quiz for "{decodedKpId}" hasn't been generated yet.</p>
-        <Link to="/" className="btn btn-primary">Back to Dashboard</Link>
+        <h2>测验未找到</h2>
+        <p>"{decodedKpId}" 的测验尚未生成。</p>
+        <Link to="/" className="btn btn-primary">返回学习台</Link>
       </div>
     );
   }
@@ -149,7 +149,7 @@ export default function QuizViewer() {
         <ChevronRight size={14} />
         <Link to="/">Dashboard</Link>
         <ChevronRight size={14} />
-        <span>Quiz: {decodedKpId}</span>
+        <span>测验：{decodedKpId}</span>
       </nav>
 
       {/* Header */}
@@ -157,9 +157,9 @@ export default function QuizViewer() {
         <div className="quiz-meta">
           <span className="kp-badge">{decodedKpId}</span>
         </div>
-        <h1>{quiz.title || 'Knowledge Quiz'}</h1>
+        <h1>{quiz.title || '知识测验'}</h1>
         <p className="quiz-subtitle">
-          Test your understanding of the concepts covered in this lesson.
+          检验你对本课涵盖概念的理解。
         </p>
       </header>
 
@@ -169,8 +169,8 @@ export default function QuizViewer() {
           <span className="score-percent">{score.percent}%</span>
         </div>
         <div className="score-details">
-          <h3>{score.percent >= 80 ? 'Excellent!' : score.percent >= 60 ? 'Good Progress' : 'Keep Learning'}</h3>
-          <p>{score.correct} of {score.total} questions correct</p>
+          <h3>{score.percent >= 80 ? '优秀！' : score.percent >= 60 ? '不错的进步' : '继续学习'}</h3>
+          <p>{score.correct} / {score.total} 题正确</p>
         </div>
       </div>
 
@@ -179,7 +179,7 @@ export default function QuizViewer() {
         <section className="quiz-section animate-in animate-delay-2">
           <h2>
             <HelpCircle size={20} />
-            Multiple Choice
+            选择题
           </h2>
           <div className="questions-list">
             {multipleChoice.map((q, qIdx) => {
@@ -218,10 +218,10 @@ export default function QuizViewer() {
                   {isRevealed && !showAnswers && (
                     <p className="feedback-text">
                       {isCorrect ? (
-                        <span className="correct-text">✓ Correct!</span>
+                        <span className="correct-text">✓ 正确！</span>
                       ) : (
                         <span className="incorrect-text">
-                          ✗ Incorrect. The correct answer is {q.correctAnswer}.
+                          ✗ 错误。正确答案是 {q.correctAnswer}。
                         </span>
                       )}
                     </p>
@@ -238,7 +238,7 @@ export default function QuizViewer() {
         <section className="quiz-section animate-in animate-delay-3">
           <h2>
             <CheckCircle size={20} />
-            True / False
+            判断题
           </h2>
           <div className="questions-list">
             {trueFalse.map((q, qIdx) => (
@@ -252,18 +252,18 @@ export default function QuizViewer() {
                     className="tf-btn"
                     onClick={() => setRevealedQuestions(prev => ({ ...prev, [`tf-${qIdx}`]: true }))}
                   >
-                    True
+                    正确
                   </button>
                   <button
                     className="tf-btn"
                     onClick={() => setRevealedQuestions(prev => ({ ...prev, [`tf-${qIdx}`]: true }))}
                   >
-                    False
+                    错误
                   </button>
                 </div>
                 {showAnswers && (
                   <p className="answer-reveal">
-                    Answer: <strong>{q.answer}</strong>
+                    答案：<strong>{q.answer}</strong>
                   </p>
                 )}
               </div>
@@ -277,7 +277,7 @@ export default function QuizViewer() {
         <section className="quiz-section animate-in animate-delay-4">
           <h2>
             <HelpCircle size={20} />
-            Short Answer
+            简答题
           </h2>
           <div className="questions-list">
             {shortAnswer.map((q, qIdx) => (
@@ -288,7 +288,7 @@ export default function QuizViewer() {
                 </p>
                 <textarea
                   className="short-answer-input"
-                  placeholder="Write your answer here..."
+                  placeholder="在此输入你的答案..."
                 />
               </div>
             ))}
@@ -303,10 +303,10 @@ export default function QuizViewer() {
           onClick={() => setShowAnswers(!showAnswers)}
         >
           {showAnswers ? <EyeOff size={18} /> : <Eye size={18} />}
-          {showAnswers ? 'Hide Answer Key' : 'Show Answer Key'}
+          {showAnswers ? '隐藏答案' : '显示答案'}
         </button>
         <Link to={`/lesson/${kpId}`} className="btn btn-primary">
-          Review Lesson
+          复习备课
         </Link>
       </div>
     </div>

@@ -32,8 +32,8 @@ export default function NewOutline() {
   return (
     <div className="new-outline-page">
       <header className="new-outline-header animate-in">
-        <h1>Create New Outline</h1>
-        <p>Generate a structured learning outline for any topic</p>
+        <h1>创建新课程大纲</h1>
+        <p>为任意主题生成结构化的学习大纲</p>
       </header>
 
       {/* Mode Tabs */}
@@ -43,46 +43,44 @@ export default function NewOutline() {
           onClick={() => setMode('topic')}
         >
           <Sparkles size={18} />
-          Topic Input
+          主题输入
         </button>
         <button
           className={`mode-tab ${mode === 'content' ? 'active' : ''}`}
           onClick={() => setMode('content')}
         >
           <FileText size={18} />
-          Paste Content
+          粘贴内容
         </button>
       </div>
 
       <form onSubmit={handleSubmit} className="new-outline-form animate-in animate-delay-2">
         {mode === 'topic' ? (
           <div className="topic-input-section">
-            <label htmlFor="topic">What would you like to learn about?</label>
+            <label htmlFor="topic">你想学习什么？</label>
             <input
               id="topic"
               type="text"
               value={topic}
               onChange={(e) => setTopic(e.target.value)}
-              placeholder="e.g., Machine Learning Fundamentals, Web Development, Data Structures..."
+              placeholder="例如：机器学习基础、Web 开发、数据结构..."
               autoFocus
             />
             <p className="input-hint">
-              Describe your topic in a few words. The system will generate a comprehensive
-              learning outline based on best practices in curriculum design.
+              用几个词描述你的主题。系统将基于课程设计的最佳实践为你生成全面的学习大纲。
             </p>
           </div>
         ) : (
           <div className="content-input-section">
-            <label htmlFor="content">Paste your content or notes</label>
+            <label htmlFor="content">粘贴你的内容或笔记</label>
             <textarea
               id="content"
               value={content}
               onChange={(e) => setContent(e.target.value)}
-              placeholder="Paste your existing content, notes, or raw material here. The system will structure it into a proper learning outline..."
+              placeholder="在此粘贴你现有的内容、笔记或原材料。系统会将其结构化为一个适当的学习大纲..."
             />
             <p className="input-hint">
-              The system will analyze your content and create a structured outline with
-              knowledge points, learning objectives, and assessments.
+              系统将分析你的内容，并创建包含知识点、学习目标和评估的结构化大纲。
             </p>
           </div>
         )}
@@ -100,12 +98,12 @@ export default function NewOutline() {
                   <span></span><span></span><span></span>
                   <span></span><span></span><span></span>
                 </div>
-                Generating...
+                生成中...
               </>
             ) : (
               <>
                 <Sparkles size={20} />
-                Generate Outline
+                生成大纲
               </>
             )}
           </button>
@@ -114,9 +112,9 @@ export default function NewOutline() {
 
       {/* Example Topics */}
       <section className="example-topics animate-in animate-delay-3">
-        <h3>Popular Topics</h3>
+        <h3>热门主题</h3>
         <div className="topic-chips">
-          {['Machine Learning', 'Python Programming', 'Data Structures', 'Web Development', 'AI Agents', 'System Design'].map(t => (
+          {['机器学习', 'Python 编程', '数据结构', 'Web 开发', 'AI 智能体', '系统设计'].map(t => (
             <button
               key={t}
               className="topic-chip"

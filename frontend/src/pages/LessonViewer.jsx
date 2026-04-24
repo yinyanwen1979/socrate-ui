@@ -106,9 +106,9 @@ export default function LessonViewer() {
   if (!lesson) {
     return (
       <div className="lesson-not-found">
-        <h2>Lesson not found</h2>
-        <p>The lesson plan for "{decodedKpId}" hasn't been generated yet.</p>
-        <Link to="/" className="btn btn-primary">Back to Dashboard</Link>
+        <h2>备课未找到</h2>
+        <p>"{decodedKpId}" 的备课尚未生成。</p>
+        <Link to="/" className="btn btn-primary">返回学习台</Link>
       </div>
     );
   }
@@ -120,9 +120,9 @@ export default function LessonViewer() {
     <div className="lesson-viewer">
       {/* Breadcrumb */}
       <nav className="breadcrumb animate-in">
-        <Link to="/">Dashboard</Link>
+        <Link to="/">学习台</Link>
         <ChevronRight size={14} />
-        <Link to="/">Dashboard</Link>
+        <Link to="/">学习台</Link>
         <ChevronRight size={14} />
         <span>{lesson.title}</span>
       </nav>
@@ -132,11 +132,11 @@ export default function LessonViewer() {
         <div className="lesson-meta">
           <span className="kp-badge">{decodedKpId}</span>
           <span className={`badge badge-${lesson.difficulty || 'medium'}`}>
-            {lesson.difficulty || 'medium'}
+            {lesson.difficulty === 'easy' ? '简单' : lesson.difficulty === 'hard' ? '困难' : '中等'}
           </span>
           <span className="time-badge">
             <BookOpen size={14} />
-            {lesson.estimated_time || '30min'}
+            {lesson.estimated_time || '30'} 分钟
           </span>
         </div>
         <h1>{lesson.title}</h1>
@@ -151,7 +151,7 @@ export default function LessonViewer() {
         <section className="lesson-section animate-in animate-delay-1">
           <h2>
             <span className="section-num">I.</span>
-            Enduring Understandings
+            持久理解
           </h2>
           <ol className="eu-list">
             {eus.map((eu, idx) => (
@@ -169,7 +169,7 @@ export default function LessonViewer() {
         <section className="lesson-section animate-in animate-delay-2">
           <h2>
             <span className="section-num">II.</span>
-            Essential Questions
+            核心问题
           </h2>
           <ul className="eq-list">
             {eqs.map((eq, idx) => (
@@ -187,11 +187,11 @@ export default function LessonViewer() {
         <section className="lesson-section animate-in animate-delay-3">
           <h2>
             <span className="section-num">III.</span>
-            Students Will Be Able To...
+            学生将能够...
           </h2>
           {checkedCount > 0 && (
             <div className="swbat-progress">
-              <span>{checkedCount} of {swbats.length} completed</span>
+              <span>{checkedCount} / {swbats.length} 已完成</span>
               <div className="progress-bar">
                 <div
                   className="progress-bar-fill"
@@ -227,7 +227,7 @@ export default function LessonViewer() {
           <section className="lesson-section misconceptions-section animate-in animate-delay-4">
             <h2>
               <span className="section-num">⚠</span>
-              Common Misconceptions
+              常见误解
             </h2>
             <ul className="misconceptions-list">
               {misconceptions.map((mis, idx) => (
@@ -247,14 +247,14 @@ export default function LessonViewer() {
             onClick={() => setChatOpen(true)}
           >
             <MessageCircle size={20} />
-            Start Socratic Teaching
+            开始苏格拉底式教学
           </button>
           <Link
             to={`/quiz/${encodeURIComponent(decodedKpId)}`}
             className="btn btn-secondary btn-lg"
           >
             <FileText size={20} />
-            Take Quiz
+            参加测验
           </Link>
         </section>
       </div>
@@ -264,21 +264,19 @@ export default function LessonViewer() {
         <div className="chat-overlay" onClick={() => setChatOpen(false)}>
           <div className="chat-modal card" onClick={e => e.stopPropagation()}>
             <div className="chat-header">
-              <h3>Socratic Teaching</h3>
+              <h3>苏格拉底式教学</h3>
               <button className="btn btn-ghost btn-sm" onClick={() => setChatOpen(false)}>
-                Close
+                关闭
               </button>
             </div>
             <div className="chat-body">
               <p className="chat-placeholder">
-                Socratic teaching session would begin here. The AI would guide you through
-                questions based on the lesson content, helping you discover and deepen your
-                understanding through dialogue.
+                苏格拉底式教学将从此处开始。AI 将根据课程内容引导你通过提问来发现和深化你的理解。
               </p>
             </div>
             <div className="chat-input-area">
-              <input type="text" placeholder="Ask a question or share your thought..." />
-              <button className="btn btn-primary">Send</button>
+              <input type="text" placeholder="提出问题或分享你的想法..." />
+              <button className="btn btn-primary">发送</button>
             </div>
           </div>
         </div>

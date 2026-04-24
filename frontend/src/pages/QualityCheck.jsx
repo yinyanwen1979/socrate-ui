@@ -56,7 +56,7 @@ export default function QualityCheck() {
     return (
       <div className="check-loading">
         <div className="spinner"></div>
-        <p>Analyzing your outline...</p>
+        <p>正在分析你的大纲...</p>
       </div>
     );
   }
@@ -65,9 +65,9 @@ export default function QualityCheck() {
     return (
       <div className="check-error">
         <XCircle size={48} />
-        <h2>Quality Check Failed</h2>
+        <h2>质量检查失败</h2>
         <p>{error}</p>
-        <Link to="/" className="btn btn-primary">Back to Dashboard</Link>
+        <Link to="/" className="btn btn-primary">返回学习台</Link>
       </div>
     );
   }
@@ -79,27 +79,27 @@ export default function QualityCheck() {
   return (
     <div className="quality-check">
       <header className="check-header animate-in">
-        <h1>Quality Check Report</h1>
-        <p className="check-topic">Topic: {decodeURIComponent(topic)}</p>
+        <h1>质量检查报告</h1>
+        <p className="check-topic">主题：{decodeURIComponent(topic)}</p>
       </header>
 
       {/* Coverage Table */}
       <section className="section animate-in animate-delay-1">
-        <h2>Coverage Analysis</h2>
+        <h2>覆盖率分析</h2>
         <div className="coverage-table-wrapper">
           <table className="coverage-table">
             <thead>
               <tr>
-                <th>Knowledge Point</th>
-                <th>Lesson</th>
-                <th>Quiz</th>
-                <th>Status</th>
+                <th>知识点</th>
+                <th>备课</th>
+                <th>测验</th>
+                <th>状态</th>
               </tr>
             </thead>
             <tbody>
               {coverage.length === 0 ? (
                 <tr>
-                  <td colSpan="4" className="no-data">No knowledge points found in outline</td>
+                  <td colSpan="4" className="no-data">大纲中未找到知识点</td>
                 </tr>
               ) : (
                 coverage.map((item, idx) => (
@@ -114,7 +114,7 @@ export default function QualityCheck() {
                         <XCircle size={18} className="status-missing" />
                       )}
                       <span className={item.lesson === 'generated' ? 'text-success' : 'text-muted'}>
-                        {item.lesson}
+                        {item.lesson === 'generated' ? '已生成' : '未生成'}
                       </span>
                     </td>
                     <td className="status-cell">
@@ -124,7 +124,7 @@ export default function QualityCheck() {
                         <XCircle size={18} className="status-missing" />
                       )}
                       <span className={item.quiz === 'generated' ? 'text-success' : 'text-muted'}>
-                        {item.quiz}
+                        {item.quiz === 'generated' ? '已生成' : '未生成'}
                       </span>
                     </td>
                     <td className="status-cell">
@@ -143,7 +143,7 @@ export default function QualityCheck() {
       {/* Issues */}
       {issues.length > 0 && (
         <section className="section animate-in animate-delay-2">
-          <h2>Issues Found</h2>
+          <h2>发现的问题</h2>
           <div className="issues-list">
             {issues.map((issue, idx) => (
               <div key={idx} className={`issue-card card ${getSeverityClass(issue.severity)}`}>
@@ -169,12 +169,12 @@ export default function QualityCheck() {
       <section className="section animate-in animate-delay-3">
         <h2>
           <Lightbulb size={20} />
-          Recommendations
+          建议
         </h2>
         {recommendations.length === 0 ? (
           <div className="card recommendations-empty">
             <CheckCircle size={32} />
-            <p>No specific recommendations at this time.</p>
+            <p>目前没有具体的建议。</p>
           </div>
         ) : (
           <ul className="recommendations-list">

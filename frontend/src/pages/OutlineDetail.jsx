@@ -95,7 +95,7 @@ export default function OutlineDetail() {
   };
 
   const handleDelete = async () => {
-    if (!confirm('Are you sure you want to delete this outline?')) return;
+    if (!confirm('确定要删除此大纲吗？')) return;
     try {
       await deleteOutline(slug);
       navigate('/');
@@ -109,10 +109,10 @@ export default function OutlineDetail() {
     try {
       await generateLesson(kpId, slug);
       await updateProgress({ outlineSlug: slug, kpId, status: 'lesson_generated' });
-      alert('Lesson generated successfully!');
+      alert('备课生成成功！');
     } catch (err) {
       console.error('Failed to generate lesson:', err);
-      alert('Failed to generate lesson');
+      alert('生成备课失败');
     } finally {
       setGeneratingKP(null);
     }
@@ -123,10 +123,10 @@ export default function OutlineDetail() {
     try {
       await generateQuiz(kpId);
       await updateProgress({ outlineSlug: slug, kpId, status: 'quiz_generated' });
-      alert('Quiz generated successfully!');
+      alert('测验生成成功！');
     } catch (err) {
       console.error('Failed to generate quiz:', err);
-      alert('Failed to generate quiz');
+      alert('生成测验失败');
     } finally {
       setGeneratingKP(null);
     }
@@ -151,8 +151,8 @@ export default function OutlineDetail() {
   if (!outline) {
     return (
       <div className="outline-not-found">
-        <h2>Outline not found</h2>
-        <Link to="/" className="btn btn-primary">Back to Dashboard</Link>
+        <h2>大纲未找到</h2>
+        <Link to="/" className="btn btn-primary">返回学习台</Link>
       </div>
     );
   }
@@ -163,7 +163,7 @@ export default function OutlineDetail() {
     <div className="outline-detail">
       {/* Breadcrumb */}
       <nav className="breadcrumb animate-in">
-        <Link to="/">Dashboard</Link>
+        <Link to="/">学习台</Link>
         <ChevronRight size={14} />
         <span>{outline.title}</span>
       </nav>
@@ -175,21 +175,21 @@ export default function OutlineDetail() {
           <div className="outline-metadata">
             <span className="meta-item">
               <Users size={16} />
-              {outline.targetAudience || 'Intermediate'}
+              {outline.targetAudience || '中级'}
             </span>
             <span className={`badge ${getDifficultyClass(outline.difficulty)}`}>
               {outline.difficulty || 'intermediate'}
             </span>
             <span className="meta-item">
               <Clock size={16} />
-              {outline.estimated_total_hours || 0} hours
+              {outline.estimated_total_hours || 0} 小时
             </span>
           </div>
         </div>
         <div className="outline-actions">
           <button className="btn btn-secondary btn-sm" onClick={() => setEditMode(!editMode)}>
             <Edit2 size={16} />
-            {editMode ? 'View' : 'Edit'}
+            {editMode ? '预览' : '编辑'}
           </button>
           <button className="btn btn-ghost btn-sm" onClick={handleDelete}>
             <Trash2 size={16} />
@@ -243,7 +243,7 @@ export default function OutlineDetail() {
                           <p className="topic-overview">{topic.overview}</p>
 
                           <div className="kps-list">
-                            <h4>Knowledge Points</h4>
+                            <h4>知识点</h4>
                             {topic.kps.map((kp, kIdx) => (
                               <div key={kIdx} className="kp-item">
                                 <div className="kp-header">
@@ -256,7 +256,7 @@ export default function OutlineDetail() {
                                 <p className="kp-title">{kp.title}</p>
                                 <div className="kp-meta">
                                   <span className="kp-prereq">
-                                    Prerequisites: {kp.prerequisites}
+                                    前置知识：{kp.prerequisites}
                                   </span>
                                 </div>
                                 <div className="kp-actions">
@@ -266,7 +266,7 @@ export default function OutlineDetail() {
                                     disabled={generatingKP === kp.id}
                                   >
                                     <FileText size={14} />
-                                    {generatingKP === kp.id ? 'Generating...' : 'Lesson'}
+                                    {generatingKP === kp.id ? '生成中...' : '备课'}
                                   </button>
                                   <button
                                     className="btn btn-secondary btn-sm"
@@ -274,14 +274,14 @@ export default function OutlineDetail() {
                                     disabled={generatingKP === kp.id}
                                   >
                                     <HelpCircle size={14} />
-                                    {generatingKP === kp.id ? 'Generating...' : 'Quiz'}
+                                    {generatingKP === kp.id ? '生成中...' : '测验'}
                                   </button>
                                   <Link
                                     to={`/lesson/${encodeURIComponent(kp.id)}`}
                                     className="btn btn-ghost btn-sm"
                                   >
                                     <CheckCircle size={14} />
-                                    View Lesson
+                                    查看备课
                                   </Link>
                                 </div>
                               </div>
@@ -300,7 +300,7 @@ export default function OutlineDetail() {
         {/* Sidebar - Table of Contents */}
         <aside className="outline-sidebar animate-in animate-delay-2">
           <div className="card toc">
-            <h3>Contents</h3>
+            <h3>目录</h3>
             <nav className="toc-nav">
               {chapters.map((chapter, cIdx) => (
                 <div key={cIdx} className="toc-chapter">
@@ -337,11 +337,11 @@ export default function OutlineDetail() {
 
           {/* Progress */}
           <div className="card progress-card">
-            <h3>Progress</h3>
+            <h3>学习进度</h3>
             <div className="progress-stats">
               <div className="progress-item">
-                <span className="progress-label">Completed</span>
-                <span className="progress-value">0 / {chapters.length} chapters</span>
+                <span className="progress-label">已完成</span>
+                <span className="progress-value">0 / {chapters.length} 章节</span>
               </div>
               <div className="progress-bar">
                 <div className="progress-bar-fill" style={{ width: '0%' }}></div>
@@ -355,7 +355,7 @@ export default function OutlineDetail() {
       {editMode && (
         <div className="edit-overlay">
           <div className="edit-modal card">
-            <h2>Edit Outline</h2>
+            <h2>编辑大纲</h2>
             <textarea
               value={editContent}
               onChange={(e) => setEditContent(e.target.value)}
@@ -363,10 +363,10 @@ export default function OutlineDetail() {
             />
             <div className="edit-actions">
               <button className="btn btn-secondary" onClick={() => setEditMode(false)}>
-                Cancel
+                取消
               </button>
               <button className="btn btn-primary">
-                Save Changes
+                保存更改
               </button>
             </div>
           </div>
